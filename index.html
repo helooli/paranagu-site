@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paranaguá - Pérola do Litoral Paranaense</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1603190287607-6b04e2b5b5e0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+        }
+        
+        .attraction-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .gallery-item {
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1.5s ease-in-out;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Header/Navigation -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <i class="fas fa-anchor text-blue-600 text-2xl mr-2"></i>
+                <h1 class="text-xl font-bold text-blue-800">PARANAGUÁ</h1>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#home" class="text-blue-800 hover:text-blue-600 font-medium">Início</a>
+                <a href="#attractions" class="text-blue-800 hover:text-blue-600 font-medium">Atrações</a>
+                <a href="#gastronomy" class="text-blue-800 hover:text-blue-600 font-medium">Gastronomia</a>
+                <a href="#history" class="text-blue-800 hover:text-blue-600 font-medium">História</a>
+                <a href="#contact" class="text-blue-800 hover:text-blue-600 font-medium">Contato</a>
+            </nav>
+            <button class="md:hidden text-blue-800" id="menu-btn">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-white w-full py-4 px-4 shadow-md" id="mobile-menu">
+            <div class="flex flex-col space-y-4">
+                <a href="#home" class="text-blue-800 hover:text-blue-600 font-medium">Início</a>
+                <a href="#attractions" class="text-blue-800 hover:text-blue-600 font-medium">Atrações</a>
+                <a href="#gastronomy" class="text-blue-800 hover:text-blue-600 font-medium">Gastronomia</a>
+                <a href="#history" class="text-blue-800 hover:text-blue-600 font-medium">História</a>
+                <a href="#contact" class="text-blue-800 hover:text-blue-600 font-medium">Contato</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero flex items-center justify-center text-white fade-in">
+        <div class="text-center px-4">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">Bem-vindo a Paranaguá</h1>
+            <p class="text-xl md:text-2xl mb-8">A pérola do litoral paranaense</p>
+            <a href="#attractions" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 inline-block">
+                Explorar Atrações <i class="fas fa-arrow-down ml-2"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Quick Facts -->
+    <section class="bg-blue-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div class="p-4">
+                    <i class="fas fa-calendar-alt text-3xl mb-2"></i>
+                    <p class="font-bold text-xl">1648</p>
+                    <p class="text-sm">Ano de Fundação</p>
+                </div>
+                <div class="p-4">
+                    <i class="fas fa-users text-3xl mb-2"></i>
+                    <p class="font-bold text-xl">150k+</p>
+                    <p class="text-sm">Habitantes</p>
+                </div>
+                <div class="p-4">
+                    <i class="fas fa-umbrella-beach text-3xl mb-2"></i>
+                    <p class="font-bold text-xl">20+</p>
+                    <p class="text-sm">Praias</p>
+                </div>
+                <div class="p-4">
+                    <i class="fas fa-ship text-3xl mb-2"></i>
+                    <p class="font-bold text-xl">#1</p>
+                    <p class="text-sm">Maior Porto do PR</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Attractions -->
+    <section id="attractions" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-blue-800 mb-12">Principais Atrações</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Attraction 1 -->
+                <div class="attraction-card bg-white rounded-lg overflow-hidden shadow-lg transition duration-300">
+                    <img src="https://images.unsplash.com/photo-1581434681675-2b15b3e4b2a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Ilha do Mel" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-blue-800 mb-2">Ilha do Mel</h3>
+                        <p class="text-gray-600 mb-4">Paraíso ecológico com praias paradisíacas, trilhas ecológicas e farol histórico. Acesso apenas por barco a partir de Paranaguá.</p>
+                        <div class="flex items-center text-yellow-500 mb-3">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span class="text-gray-600 ml-2">4.7</span>
+                        </div>
+                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Saiba mais <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Attraction 2 -->
+                <div class="attraction-card bg-white rounded-lg overflow-hidden shadow-lg transition duration-300">
+                    <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Centro Histórico" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-blue-800 mb-2">Centro Histórico</h3>
+                        <p class="text-gray-600 mb-4">Casarões coloniais, igrejas barrocas e ruas de paralelepípedo que contam a história da cidade mais antiga do Paraná.</p>
+                        <div class="flex items-center text-yellow-500 mb-3">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="text-gray-600 ml-2">5.0</span>
+                        </div>
+                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Saiba mais <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Attraction 3 -->
+                <div class="attraction-card bg-white rounded-lg overflow-hidden shadow-lg transition duration-300">
+                    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Porto de Paranaguá" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-blue-800 mb-2">Porto de Paranaguá</h3>
+                        <p class="text-gray-600 mb-4">Um dos maiores portos do Brasil, com visitação guiada para conhecer a operação portuária e sua importância econômica.</p>
+                        <div class="flex items-center text-yellow-500 mb-3">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span class="text-gray-600 ml-2">4.2</span>
+                        </div>
+                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Saiba mais <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition duration-300">
+                    Ver todas as atrações <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gastronomy Section -->
+    <section id="gastronomy" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-blue-800 mb-12">Gastronomia Local</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h3 class="text-2xl font-bold text-blue-800 mb-4">Sabores do Litoral Paranaense</h3>
+                    <p class="text-gray-700 mb-6">A culinária de Paranaguá é marcada pela herança indígena, portuguesa e africana, com destaque para os frutos do mar frescos e pratos típicos como:</p>
+                    
+                    <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                        <li class="flex items-start">
+                            <i class="fas fa-utensils text-blue-600 mt-1 mr-2"></i>
+                            <span>Barreado (prato tradicional cozido por 12h)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-fish text-blue-600 mt-1 mr-2"></i>
+                            <span>Camarão na moranga</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-bread-slice text-blue-600 mt-1 mr-2"></i>
+                            <span>Bolo de banana da terra</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-cookie text-blue-600 mt-1 mr-2"></i>
+                            <span>Bala de banana artesanal</span>
+                        </li>
+                    </ul>
+                    
+                    <a href="#" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition duration-300">
+                        Roteiro Gastronômico <i class="fas fa-utensils ml-2"></i>
+                    </a>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1551504739-5e0ec216af07?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Barreado" class="w-full h-48 object-cover rounded-lg">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1604329760661-e71dc83f8f26?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Camarão" class="w-full h-48 object-cover rounded-lg">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1603569283847-aa6a0c9bc7bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Bolo de banana" class="w-full h-48 object-cover rounded-lg">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1519671488599-5b9a9e0a0c1a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Bala de banana" class="w-full h-48 object-cover rounded-lg">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- History Section -->
+    <section id="history" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-blue-800 mb-12">História e Cultura</h2>
+            
+            <div class="flex flex-col md:flex-row items-center gap-8">
+                <div class="md:w-1/2">
+                    <img src="https://images.unsplash.com/photo-1580130732478-4d3396bd2f45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="História de Paranaguá" class="w-full rounded-lg shadow-lg">
+                </div>
+                
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-bold text-blue-800 mb-4">A Cidade Mais Antiga do Paraná</h3>
+                    <p class="text-gray-700 mb-4">Fundada em 1648, Paranaguá foi o primeiro núcleo europeu no Paraná e porta de entrada para o desenvolvimento do estado.</p>
+                    <p class="text-gray-700 mb-4">Seu nome tem origem tupi-guarani e significa "Grande Mar Redondo", referência à Baía de Paranaguá.</p>
+                    <p class="text-gray-700 mb-6">A cidade preserva importantes monumentos históricos como a Igreja de São Benedito, o Museu de Arqueologia e Etnologia e o Mercado Municipal do Café.</p>
+                    
+                    <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-600">
+                        <h4 class="font-bold text-blue-800 mb-2">Curiosidade:</h4>
+                        <p class="text-gray-700">O Centro Histórico de Paranaguá possui 48 imóveis tombados pelo Patrimônio Histórico, incluindo o primeiro teatro do Paraná.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Gallery -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-blue-800 mb-12">Galeria de Fotos</h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Paranaguá" class="w-full h-48 object-cover rounded-lg">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1519671488599-5b9a9e0a0c1a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Paranaguá" class="w-full h-48 object-cover rounded-lg">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1603190287607-6b04e2b5b5e0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Paranaguá" class="w-full h-48 object-cover rounded-lg">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1603569283847-aa6a0c9bc7bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Paranaguá" class="w-full h-48 object-cover rounded-lg">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1551504739-5e0ec216af07?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Paranaguá" class="w-full h-48 object-cover rounded-lg">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1581434681675-2b15b3e4b2a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Paranaguá" class="w-full h-48 object-cover rounded-lg">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Paranaguá" class="w-full h-48 object-cover rounded-lg">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1604329760661-e71dc83f8f26?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Paranaguá" class="w-full h-48 object-cover rounded-lg">
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition duration-300">
+                    Ver mais fotos <i class="fas fa-camera ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section class="py-16 bg-blue-800 text-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Eventos e Festivais</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-blue-700 p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-white text-blue-800 rounded-full w-16 h-16 flex flex-col items-center justify-center mr-4">
+                            <span class="font-bold text-xl">29</span>
+                            <span class="text-xs">JUN</span>
+                        </div>
+                        <h3 class="text-xl font-bold">Festa de São Pedro</h3>
+                    </div>
+                    <p class="mb-4">A tradicional festa do padroeiro dos pescadores com procissão de barcos na baía, shows e comidas típicas.</p>
+                    <a href="#" class="text-yellow-300 hover:text-yellow-200 font-medium">Mais informações <i class="fas fa-arrow-right ml-1"></i></a>
+                </div>
+                
+                <div class="bg-blue-700 p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-white text-blue-800 rounded-full w-16 h-16 flex flex-col items-center justify-center mr-4">
+                            <span class="font-bold text-xl">15</span>
+                            <span class="text-xs">AGO</span>
+                        </div>
+                        <h3 class="text-xl font-bold">Festival do Camarão</h3>
+                    </div>
+                    <p class="mb-4">O maior festival gastronômico do litoral paranaense com diversas receitas à base de camarão e shows musicais.</p>
+                    <a href="#" class="text-yellow-300 hover:text-yellow-200 font-medium">Mais informações <i class="fas fa-arrow-right ml-1"></i></a>
+                </div>
+                
+                <div class="bg-blue-700 p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-white text-blue-800 rounded-full w-16 h-16 flex flex-col items-center justify-center mr-4">
+                            <span class="font-bold text-xl">08</span>
+                            <span class="text-xs">DEZ</span>
+                        </div>
+                        <h3 class="text-xl font-bold">Natal Iluminado</h3>
+                    </div>
+                    <p class="mb-4">A cidade se transforma com decorações natalinas, shows e a tradicional árvore de Natal flutuante na baía.</p>
+                    <a href="#" class="text-yellow-300 hover:text-yellow-200 font-medium">Mais informações <i class="fas fa-arrow-right ml-1"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-blue-800 mb-12">Como Chegar</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold text-blue-800 mb-4">Informações Turísticas</h3>
+                    <p class="text-gray-700 mb-6">A Secretaria Municipal de Turismo de Paranaguá está à disposição para ajudar no planejamento da sua viagem.</p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-blue-600 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-bold text-blue-800">Endereço</h4>
+                                <p class="text-gray-700">Rua XV de Novembro, 234 - Centro Histórico</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-phone-alt text-blue-600 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-bold text-blue-800">Telefone</h4>
+                                <p class="text-gray-700">(41) 3420-2929</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-envelope text-blue-600 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-bold text-blue-800">E-mail</h4>
+                                <p class="text-gray-700">turismo@paranagua.pr.gov.br</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-clock text-blue-600 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-bold text-blue-800">Horário de Atendimento</h4>
+                                <p class="text-gray-700">Segunda a sexta, das 8h às 18h</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-bold text-blue-800 mb-4">Mapa de Localização</h3>
+                    <div class="bg-gray-200 h-full rounded-lg overflow-hidden">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3578.154062111123!2d-48.51181092428326!3d-25.52051267743739!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94db03d8b1c5a8a9%3A0x6e4d9aadb1e5e0d0!2sParanagu%C3%A1%2C%20PR!5e0!3m2!1spt-BR!2sbr!4v1689871563829!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="py-12 bg-gray-100">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-2xl md:text-3xl font-bold text-blue-800 mb-4">Receba nossas novidades</h2>
+            <p class="text-gray-700 mb-6 max-w-2xl mx-auto">Assine nossa newsletter e receba informações sobre eventos, promoções e dicas de turismo em Paranaguá.</p>
+            
+            <form class="max-w-md mx-auto flex">
+                <input type="email" placeholder="Seu melhor e-mail" class="flex-grow px-4 py-3 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-r-lg transition duration-300">
+                    Assinar <i class="fas fa-paper-plane ml-2"></i>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">PARANAGUÁ</h3>
+                    <p class="mb-4">A pérola do litoral paranaense, onde história, cultura e natureza se encontram.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-white hover:text-blue-300"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white hover:text-blue-300"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white hover:text-blue-300"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white hover:text-blue-300"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Links Úteis</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-blue-300">Prefeitura Municipal</a></li>
+                        <li><a href="#" class="hover:text-blue-300">Secretaria de Turismo</a></li>
+                        <li><a href="#" class="hover:text-blue-300">Transporte Público</a></li>
+                        <li><a href="#" class="hover:text-blue-300">Hotéis e Pousadas</a></li>
+                        <li><a href="#" class="hover:text-blue-300">Restaurantes</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Atrações</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-blue-300">Ilha do Mel</a></li>
+                        <li><a href="#" class="hover:text-blue-300">Centro Histórico</a></li>
+                        <li><a href="#" class="hover:text-blue-300">Porto de Paranaguá</a></li>
+                        <li><a href="#" class="hover:text-blue-300">Museus</a></li>
+                        <li><a href="#" class="hover:text-blue-300">Praias</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Contato</h4>
+                    <address class="not-italic">
+                        <p class="mb-2">Secretaria Municipal de Turismo</p>
+                        <p class="mb-2">Rua XV de Novembro, 234</p>
+                        <p class="mb-2">Centro Histórico</p>
+                        <p class="mb-2">Paranaguá - PR</p>
+                        <p class="mb-2">CEP: 83203-010</p>
+                        <p>turismo@paranagua.pr.gov.br</p>
+                    </address>
+                </div>
+            </div>
+            
+            <div class="border-t border-blue-800 mt-8 pt-8 text-center text-sm">
+                <p>&copy; 2023 Paranaguá Turismo. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-blue-600 hover:bg-blue-700 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition duration-300 opacity-0 invisible">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Back to Top Button
+        const backToTopBtn = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.remove('opacity-0', 'invisible');
+                backToTopBtn.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopBtn.classList.remove('opacity-100', 'visible');
+                backToTopBtn.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
