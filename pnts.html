@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pontos Turísticos de Paranaguá</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom CSS for elements that need more specific styling */
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1518632717471-0b2a4c4f0e4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+        }
+        
+        .carousel {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .slide {
+            min-width: 100%;
+        }
+        
+        .slide img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+        
+        .navigation-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+        }
+        
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.5);
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .dot.active {
+            background-color: white;
+        }
+        
+        .attraction-card {
+            transition: all 0.3s ease;
+        }
+        
+        .attraction-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #1e40af;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .back-to-top:hover {
+            background-color: #1e3a8a;
+            transform: translateY(-3px);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section {
+                height: 300px;
+            }
+            
+            .slide img {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Navigation -->
+    <nav class="bg-blue-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="text-xl font-bold">Paranaguá Turismo</div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="culinaria.html" class="hover:text-blue-200 transition"><i class="fas fa-utensils mr-2"></i>Culinária</a>
+                    <a href="pnts.html" class="font-bold text-blue-200"><i class="fas fa-map-marked-alt mr-2"></i>Pontos Turísticos</a>
+                    <a href="historias.html" class="hover:text-blue-200 transition"><i class="fas fa-landmark mr-2"></i>História</a>
+                    <a href="Hotelaria.html" class="hover:text-blue-200 transition"><i class="fas fa-hotel mr-2"></i>Hotelaria</a>
+                    <a href="cultura.html" class="hover:text-blue-200 transition"><i class="fas fa-music mr-2"></i>Cultura</a>
+                </div>
+                <button class="md:hidden focus:outline-none" id="mobile-menu-button">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+            <!-- Mobile menu -->
+            <div class="md:hidden hidden mt-2 pb-2" id="mobile-menu">
+                <a href="culinaria.html" class="block py-2 hover:bg-blue-800 px-2 rounded"><i class="fas fa-utensils mr-2"></i>Culinária</a>
+                <a href="pnts.html" class="block py-2 bg-blue-800 px-2 rounded"><i class="fas fa-map-marked-alt mr-2"></i>Pontos Turísticos</a>
+                <a href="historias.html" class="block py-2 hover:bg-blue-800 px-2 rounded"><i class="fas fa-landmark mr-2"></i>História</a>
+                <a href="Hotelaria.html" class="block py-2 hover:bg-blue-800 px-2 rounded"><i class="fas fa-hotel mr-2"></i>Hotelaria</a>
+                <a href="cultura.html" class="block py-2 hover:bg-blue-800 px-2 rounded"><i class="fas fa-music mr-2"></i>Cultura</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section flex items-center justify-center text-white">
+        <div class="text-center px-4">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Pontos Turísticos de Paranaguá</h1>
+            <p class="text-xl md:text-2xl">Descubra as maravilhas históricas e naturais desta cidade litorânea</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Introduction -->
+        <section class="mb-12 text-center">
+            <h2 class="text-3xl font-bold text-blue-900 mb-4">Explore os Encantos de Paranaguá</h2>
+            <p class="text-lg text-gray-700 max-w-3xl mx-auto">
+                Paranaguá, a cidade mais antiga do Paraná, guarda em suas ruas e paisagens uma rica história que se mistura com a beleza natural do litoral paranaense. Conheça seus principais pontos turísticos, desde construções históricas até ilhas paradisíacas.
+            </p>
+        </section>
+
+        <!-- Attractions Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            <!-- Fontinha -->
+            <div class="bg-white rounded-lg overflow-hidden shadow-md attraction-card">
+                <img src="fontinha.png" alt="Fontinha" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-blue-900 mb-2">Fontinha</h3>
+                    <p class="text-gray-600 mb-4">Uma das mais antigas estruturas históricas de Paranaguá, datando do século XVII, que serviu como principal fonte de água potável para os primeiros habitantes.</p>
+                    <a href="#fontinha" class="text-blue-600 font-medium hover:text-blue-800">Saiba mais</a>
+                </div>
+            </div>
+
+            <!-- Igreja São Benedito -->
+            <div class="bg-white rounded-lg overflow-hidden shadow-md attraction-card">
+                <img src="benedito.png" alt="Igreja São Benedito" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-blue-900 mb-2">Igreja de São Benedito</h3>
+                    <p class="text-gray-600 mb-4">Patrimônio histórico do século XVII intimamente ligado à Irmandade de São Benedito, composta por pessoas escravizadas e libertas.</p>
+                    <a href="#sao-benedito" class="text-blue-600 font-medium hover:text-blue-800">Saiba mais</a>
+                </div>
+            </div>
+
+            <!-- Porto -->
+            <div class="bg-white rounded-lg overflow-hidden shadow-md attraction-card">
+                <img src="porto-01.png" alt="Porto de Paranaguá" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-blue-900 mb-2">Porto de Paranaguá</h3>
+                    <p class="text-gray-600 mb-4">Um dos mais antigos e importantes portos do Brasil, com história que remonta ao período colonial.</p>
+                    <a href="#porto" class="text-blue-600 font-medium hover:text-blue-800">Saiba mais</a>
+                </div>
+            </div>
+
+            <!-- Mercado do Café -->
+            <div class="bg-white rounded-lg overflow-hidden shadow-md attraction-card">
+                <img src="mercado.png" alt="Mercado do Café" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-blue-900 mb-2">Mercado do Café</h3>
+                    <p class="text-gray-600 mb-4">Construído em meados do século XIX em estilo neoclássico, hoje abriga um centro gastronômico especializado em frutos do mar.</p>
+                    <a href="#mercado-cafe" class="text-blue-600 font-medium hover:text-blue-800">Saiba mais</a>
+                </div>
+            </div>
+
+            <!-- Ilha do Mel -->
+            <div class="bg-white rounded-lg overflow-hidden shadow-md attraction-card">
+                <img src="ilha-mel.png" alt="Ilha do Mel" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-blue-900 mb-2">Ilha do Mel</h3>
+                    <p class="text-gray-600 mb-4">Considerada por muitos como tendo as melhores praias do Paraná, com quatro pontos turísticos principais.</p>
+                    <a href="#ilha-mel" class="text-blue-600 font-medium hover:text-blue-800">Saiba mais</a>
+                </div>
+            </div>
+
+            <!-- Santuário Nossa Senhora do Rocio -->
+            <div class="bg-white rounded-lg overflow-hidden shadow-md attraction-card">
+                <img src="senhora01.png" alt="Santuário Nossa Senhora do Rocio" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-blue-900 mb-2">Santuário N.S. do Rocio</h3>
+                    <p class="text-gray-600 mb-4">Local sagrado com história que remonta ao século XVII, quando a imagem da Virgem foi encontrada por um pescador.</p>
+                    <a href="#santuario" class="text-blue-600 font-medium hover:text-blue-800">Saiba mais</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detailed Attractions -->
+        <section class="space-y-16">
+            <!-- Fontinha -->
+            <div id="fontinha" class="bg-white rounded-lg shadow-lg overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-1/3">
+                        <img src="fontinha.png" alt="Fontinha" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 md:w-2/3">
+                        <h2 class="text-2xl font-bold text-blue-900 mb-4">Fontinha</h2>
+                        <p class="text-gray-700 mb-4">A Fontinha, também conhecida como Fonte Velha ou Fonte de Cima, é uma das mais antigas estruturas históricas de Paranaguá, datando do século XVII. Situada no Centro Histórico da cidade, ela desempenhou um papel essencial no desenvolvimento urbano e social do período colonial, servindo como a principal fonte de água potável para os primeiros habitantes da vila e para os navios que atracavam no porto.</p>
+                        <p class="text-gray-700 mb-4">A localização da Fontinha foi estrategicamente escolhida, sendo abastecida por uma nascente natural de água fresca, o que a tornou vital para a sobrevivência da população local. Na época, a água era retirada em baldes e transportada até as residências e embarcações. Os indígenas Carijós, habitantes originais da região, chamavam o local de "Camboa", que em seu idioma significava "lugar de água boa".</p>
+                    </div>
+                </div>
+                <div class="p-6 bg-gray-50">
+                    <h3 class="text-xl font-semibold text-blue-800 mb-3">Mais sobre a Fontinha</h3>
+                    <div class="md:flex">
+                        <div class="md:w-1/2 md:pr-4 mb-4 md:mb-0">
+                            <p class="text-gray-700">A construção da Fontinha utilizou pedras trazidas como lastro nos porões de navios negreiros. Essas pedras, colocadas de forma artesanal, compõem até hoje sua estrutura, representando tanto a influência europeia quanto o sofrimento e a história dos povos escravizados que chegaram ao Brasil.</p>
+                        </div>
+                        <div class="md:w-1/2 md:pl-4">
+                            <p class="text-gray-700">Ao longo dos anos, a Fontinha passou por diversas reformas para preservar sua estrutura original. Ela foi tombada pelo Patrimônio Histórico e Artístico do Paraná em 1964, reconhecendo seu valor histórico, cultural e arquitetônico. Atualmente, a Fontinha é um ponto turístico importante de Paranaguá, atraindo visitantes que buscam explorar o rico patrimônio histórico da cidade.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Igreja São Benedito -->
+            <div id="sao-benedito" class="bg-white rounded-lg shadow-lg overflow-hidden mt-12">
+                <div class="md:flex">
+                    <div class="md:w-1/3">
+                        <img src="benedito.png" alt="Igreja São Benedito" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 md:w-2/3">
+                        <h2 class="text-2xl font-bold text-blue-900 mb-4">Igreja de São Benedito</h2>
+                        <p class="text-gray-700 mb-4">A Igreja de São Benedito é um dos patrimônios históricos e culturais mais emblemáticos de Paranaguá. Sua história remonta ao século XVII e está intimamente ligada à Irmandade de São Benedito, uma associação religiosa composta por pessoas escravizadas e libertas, que buscavam um espaço de devoção e afirmação cultural em meio ao período colonial.</p>
+                        <p class="text-gray-700 mb-4">A construção da igreja teve início em 1784, no terreno onde antes estava localizada a Igreja de Nossa Senhora das Mercês, transferida da Ilha da Cotinga para o continente. Para a edificação, materiais da igreja anterior foram reaproveitados, evidenciando a economia de recursos da época.</p>
+                    </div>
+                </div>
+                <div class="p-6 bg-gray-50">
+                    <div class="md:flex">
+                        <div class="md:w-1/2 md:pr-4 mb-4 md:mb-0">
+                            <h3 class="text-xl font-semibold text-blue-800 mb-3">Arquitetura e Acervo</h3>
+                            <p class="text-gray-700">Concluída no estilo colonial brasileiro, a arquitetura reflete as características simples e funcionais predominantes no período, mas com elementos marcantes, como o frontão curvilíneo e uma torre sineira lateral. O interior da igreja também preserva um acervo sacro valioso, incluindo imagens religiosas de grande importância histórica.</p>
+                        </div>
+                        <div class="md:w-1/2 md:pl-4">
+                            <h3 class="text-xl font-semibold text-blue-800 mb-3">Importância Cultural</h3>
+                            <p class="text-gray-700">São Benedito, conhecido como o "Santo Negro", tornou-se um símbolo de fé e esperança para escravizados e libertos. Sua devoção inspirou festas religiosas populares, como as Congadas, que são celebrações religiosas e culturais repletas de danças, cantos e procissões.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Porto -->
+            <div id="porto" class="bg-white rounded-lg shadow-lg overflow-hidden mt-12">
+                <div class="md:flex">
+                    <div class="md:w-1/3">
+                        <img src="porto-01.png" alt="Porto de Paranaguá" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 md:w-2/3">
+                        <h2 class="text-2xl font-bold text-blue-900 mb-4">Porto de Paranaguá</h2>
+                        <p class="text-gray-700 mb-4">O Porto de Paranaguá é um dos mais antigos e importantes do Brasil, com uma história que remonta ao período colonial e que reflete a evolução econômica e social do Paraná e do país. Localizado na Baía de Paranaguá, o porto desempenhou um papel crucial no desenvolvimento da região e na integração do Brasil ao comércio internacional.</p>
+                        <p class="text-gray-700 mb-4">A história do porto começa no século XVI, quando os primeiros exploradores portugueses chegaram à região. Inicialmente, o porto era conhecido como "Porto de Nossa Senhora do Rosário", em referência à igreja próxima, e servia como ponto de apoio para as atividades comerciais do povoado.</p>
+                    </div>
+                </div>
+                <div class="p-6 bg-gray-50">
+                    <div class="md:flex">
+                        <div class="md:w-1/2 md:pr-4 mb-4 md:mb-0">
+                            <h3 class="text-xl font-semibold text-blue-800 mb-3">Modernização</h3>
+                            <p class="text-gray-700">Em 1935, o porto foi oficialmente inaugurado como Porto Dom Pedro II, marcando o início de sua operação como um complexo portuário moderno. Desde então, ele passou por diversas expansões e melhorias, tornando-se um dos maiores portos graneleiros da América Latina.</p>
+                        </div>
+                        <div class="md:w-1/2 md:pl-4">
+                            <h3 class="text-xl font-semibold text-blue-800 mb-3">Importância Atual</h3>
+                            <p class="text-gray-700">Hoje, o Porto de Paranaguá é um dos principais exportadores de produtos agrícolas do Brasil, como soja e farelo de soja. A modernização do porto incluiu a construção de terminais especializados, como o Terminal de Contêineres de Paranaguá (TCP), que é um dos mais avançados do país.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mercado do Café -->
+            <div id="mercado-cafe" class="bg-white rounded-lg shadow-lg overflow-hidden mt-12">
+                <div class="md:flex">
+                    <div class="md:w-1/3">
+                        <img src="mercado.png" alt="Mercado do Café" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 md:w-2/3">
+                        <h2 class="text-2xl font-bold text-blue-900 mb-4">Mercado do Café</h2>
+                        <p class="text-gray-700 mb-4">O Mercado Municipal foi construído em meados do século XIX e foi reformado no início do século XX. Tem um estilo neoclássico. O Mercado foi um ponto de degustação do café, servido com quitutes da região.</p>
+                        <p class="text-gray-700 mb-4">Atualmente, é denominado Mercado do Café e abriga um centro gastronômico que oferece refeições à base de frutos de mar e comida típica do litoral, além dos tradicionais bolinhos de camarão, de banana e pastéis de vários sabores.</p>
+                    </div>
+                </div>
+                <div class="p-6 bg-gray-50">
+                    <h3 class="text-xl font-semibold text-blue-800 mb-3">História do Mercado</h3>
+                    <div class="md:flex">
+                        <div class="md:w-1/2 md:pr-4 mb-4 md:mb-0">
+                            <p class="text-gray-700">Iniciou-se a construção no governo de Afonso Camargo e concluído no governo Caetano Munhoz da Rocha. Um misto de art-nouveau com classicismo, todo em ferro fundido trabalhado em arco e rendilhados.</p>
+                        </div>
+                        <div class="md:w-1/2 md:pl-4">
+                            <p class="text-gray-700">Acredita-se que tenha sido edificado no largo onde outrora fora o logradouro em que estava instalado o pelourinho, símbolo do poder Real na cidade desde a sua fundação em 29 de julho de 1648.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Santuário Nossa Senhora do Rocio -->
+            <div id="santuario" class="bg-white rounded-lg shadow-lg overflow-hidden mt-12">
+                <div class="md:flex">
+                    <div class="md:w-1/3">
+                        <img src="senhora01.png" alt="Santuário Nossa Senhora do Rocio" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 md:w-2/3">
+                        <h2 class="text-2xl font-bold text-blue-900 mb-4">Santuário Nossa Senhora do Rocio</h2>
+                        <p class="text-gray-700 mb-4">O Santuário Estadual de Nossa Senhora do Rocio, localizado em Paranaguá, Paraná, tem uma história rica e profundamente enraizada na fé e devoção dos fiéis. A tradição remonta ao século XVII, quando a imagem da Virgem do Rocio foi encontrada por um pescador chamado Pai Berê, nas águas da Baía de Paranaguá.</p>
+                        <p class="text-gray-700 mb-4">A primeira referência documentada à Nossa Senhora do Rocio data de 1686, quando a população recorreu à santa durante uma epidemia de cólera, conhecida como "Peste Grande", que assolou o litoral. Em 1813, foi construída a Capela de Nossa Senhora do Rocio, e em 1977, o Vaticano declarou oficialmente Nossa Senhora do Rocio como padroeira do Paraná.</p>
+                    </div>
+                </div>
+                <div class="p-6 bg-gray-50">
+                    <div class="md:flex">
+                        <div class="md:w-1/2 md:pr-4 mb-4 md:mb-0">
+                            <h3 class="text-xl font-semibold text-blue-800 mb-3">Arquitetura</h3>
+                            <p class="text-gray-700">O atual santuário foi inaugurado em 30 de maio de 1920, com um estilo arquitetônico Neobarroco, projetado pelo renomado arquiteto e pintor Alfredo Andersen. A igreja passou por diversas reformas ao longo dos anos, incluindo uma modernização em 2020, quando o presbitério recebeu uma nova pintura com desenhos sacros e litúrgicos.</p>
+                        </div>
+                        <div class="md:w-1/2 md:pl-4">
+                            <h3 class="text-xl font-semibold text-blue-800 mb-3">Localização</h3>
+                            <p class="text-gray-700">A localização do santuário também é significativa, pois está voltado para a Baía de Paranaguá, onde a imagem foi encontrada. Isso reflete sua importância como um local de acolhimento para fiéis e visitantes, incluindo estrangeiros que chegavam ao porto da cidade.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Carousel -->
+                <div class="carousel mt-6">
+                    <div class="slides">
+                        <div class="slide active">
+                            <img src="igreja-só.png" alt="Foto do Santuário" />
+                        </div>
+                        <div class="slide">
+                            <img src="ft.png-igreja.jpg" alt="Foto do Santuário" />
+                        </div>
+                        <div class="slide">
+                            <img src="casa-igreja.png" alt="Foto do Santuário" />
+                        </div>
+                        <div class="slide">
+                            <img src="cima-igeja.png" alt="Foto do Santuário" />
+                        </div>
+                    </div>
+                    <div class="navigation-dots">
+                        <span class="dot active" data-index="0" aria-label="Foto 1"></span>
+                        <span class="dot" data-index="1" aria-label="Foto 2"></span>
+                        <span class="dot" data-index="2" aria-label="Foto 3"></span>
+                        <span class="dot" data-index="3" aria-label="Foto 4"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ilha do Mel -->
+            <div id="ilha-mel" class="bg-white rounded-lg shadow-lg overflow-hidden mt-12">
+                <div class="md:flex">
+                    <div class="md:w-1/3">
+                        <img src="ilha-mel.png" alt="Ilha do Mel" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 md:w-2/3">
+                        <h2 class="text-2xl font-bold text-blue-900 mb-4">Ilha do Mel</h2>
+                        <p class="text-gray-700 mb-4">A ilha do Mel é um ponto turístico de muita importância no estado do Paraná. Muitas pessoas consideram que a ilha tem as melhores praias do estado. A ilha, que faz parte do município de Paranaguá, é administrada pelo Instituto Ambiental do Paraná (IAP).</p>
+                        <p class="text-gray-700 mb-4">Não é permitida a tração animal ou a motor na ilha. Existem muitas áreas onde não é permitida a presença de visitantes. A ilha possui quatro pontos turísticos de destaque: Ao norte a Fortaleza, no centro Nova Brasília e o Farol das Conchas e ao Sul Encantadas.</p>
+                    </div>
+                </div>
+                <div class="p-6 bg-gray-50">
+                    <h3 class="text-xl font-semibold text-blue-800 mb-3">Atrações Principais</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-blue-700 mb-2">Fortaleza</h4>
+                            <p class="text-gray-600 text-sm">Localizada ao norte da ilha, a Fortaleza de Nossa Senhora dos Prazeres é uma construção militar do século XVIII.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-blue-700 mb-2">Farol das Conchas</h4>
+                            <p class="text-gray-600 text-sm">Construído em 1872, o farol está localizado no Morro das Conchas e oferece uma vista panorâmica deslumbrante.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="font-semibold text-blue-700 mb-2">Encantadas</h4>
+                            <p class="text-gray-600 text-sm">A região sul da ilha abriga belas praias e formações rochosas, além de trilhas que levam a mirantes naturais.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- More Attractions -->
+        <section class="mt-16">
+            <h2 class="text-2xl font-bold text-blue-900 mb-6">Mais Pontos Turísticos</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Ilha da Cotinga -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold text-blue-800 mb-3">Ilha da Cotinga</h3>
+                    <div class="md:flex">
+                        <div class="md:w-1/3 mb-4 md:mb-0">
+                            <img src="ILHA.PNG" alt="Ilha da Cotinga" class="w-full rounded">
+                        </div>
+                        <div class="md:w-2/3 md:pl-4">
+                            <p class="text-gray-700">Local onde os primeiros colonizadores vindos de São Paulo, com a intenção de chegar a Paranaguá, se estabeleceram com receio dos índios carijós que dominavam a região. Situada na baía de Paranaguá, é hoje fonte de mistério, onde acham-se inscrições em ruínas e vestígios do início da civilização paranaense.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ilha Eufrasina -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold text-blue-800 mb-3">Ilha Eufrasina</h3>
+                    <div class="md:flex">
+                        <div class="md:w-1/3 mb-4 md:mb-0">
+                            <img src="ILHA EUFRASINA.png" alt="Ilha Eufrasina" class="w-full rounded">
+                        </div>
+                        <div class="md:w-2/3 md:pl-4">
+                            <p class="text-gray-700">Situada na baía de Paranaguá, é uma área de grande beleza natural e importância ecológica. Conhecida por suas paisagens deslumbrantes, a ilha é cercada por águas calmas e possui praias que atraem visitantes em busca de tranquilidade e atividades ao ar livre.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ilha Piaçaguera -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold text-blue-800 mb-3">Ilha Piaçaguera</h3>
+                    <div class="md:flex">
+                        <div class="md:w-1/3 mb-4 md:mb-0">
+                            <img src="ILHA PIAÇAGUERA.png" alt="Ilha Piaçaguera" class="w-full rounded">
+                        </div>
+                        <div class="md:w-2/3 md:pl-4">
+                            <p class="text-gray-700">Situada na baía de Paranaguá, é uma área de grande importância ecológica e cultural. Com uma rica biodiversidade, a ilha é coberta por vegetação nativa da Mata Atlântica, abrigando diversas espécies de fauna e flora.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ponta do Ubá -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold text-blue-800 mb-3">Ponta do Ubá</h3>
+                    <div class="md:flex">
+                        <div class="md:w-1/3 mb-4 md:mb-0">
+                            <img src="ponta-do-uba.png" alt="Ponta do Ubá" class="w-full rounded">
+                        </div>
+                        <div class="md:w-2/3 md:pl-4">
+                            <p class="text-gray-700">Uma comunidade caiçara localizada no Complexo Estuarino de Paranaguá, que se destaca por sua rica cultura e modos de vida sustentáveis. Com cerca de 100 moradores, a comunidade preserva tradições que remontam à relação íntima com o mar e a natureza.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Morros -->
+        <section class="mt-16">
+            <h2 class="text-2xl font-bold text-blue-900 mb-6">Morros de Paranaguá</h2>
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <p class="text-gray-700 mb-6">Os morros de Paranaguá, no litoral do Paraná, oferecem diversas opções para contemplar a natureza e as paisagens, com destaque para o Morro da Baleia, o Morro das Conchas e o Morro do Sabão.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <img src="morro-01.png" alt="Morro" class="w-full rounded-lg">
+                    <img src="morro-da-baleia.png" alt="Morro da Baleia" class="w-full rounded-lg">
+                    <img src="morrp-03.png" alt="Morro" class="w-full rounded-lg">
+                </div>
+                
+                <h3 class="text-xl font-semibold text-blue-800 mb-3">Morro das Conchas (Farol das Conchas)</h3>
+                <div class="md:flex">
+                    <div class="md:w-1/2 md:pr-4 mb-4 md:mb-0">
+                        <p class="text-gray-700">Foi construído por ordem do Imperador D. Pedro II com o objetivo de melhorar a orientação dos navegantes na Baía de Paranaguá e modernizar a navegação comercial brasileira. Ele está localizado no alto do Morro das Conchas que tem aproximadamente 60 metros de altura e proporciona uma vista privilegiada.</p>
+                    </div>
+                    <div class="md:w-1/2 md:pl-4">
+                        <p class="text-gray-700">É possível avistar o monumento de praticamente toda a ilha. O farol exerceu atividades de controle de navegação até os anos 1950, após a Segunda Guerra Mundial. Atualmente não é possível visitar a sua área interna por segurança e para que seja preservada a construção.</p>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+                    <img src="conchas-01.png" alt="Farol das Conchas" class="w-full rounded-lg">
+                    <img src="conchas-02.png" alt="Farol das Conchas" class="w-full rounded-lg">
+                    <img src="conchas-04.png" alt="Farol das Conchas" class="w-full rounded-lg">
+                    <img src="conchas-03.png" alt="Farol das Conchas" class="w-full rounded-lg">
+                </div>
+            </div>
+        </section>
+
+        <!-- Cachoeiras -->
+        <section class="mt-16">
+            <h2 class="text-2xl font-bold text-blue-900 mb-6">Cachoeiras</h2>
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-semibold text-blue-800 mb-3">Cachoeira Quintilha</h3>
+                <div class="md:flex">
+                    <div class="md:w-1/2 md:pr-4 mb-4 md:mb-0">
+                        <p class="text-gray-700">Para quem quer aproveitar um dia ainda mais diferente, a dica é visitar Paranaguá e conhecer as cachoeiras do rio Brejatuba. Também na PR-508, mas no km 4, a entrada para as cachoeiras Quintilha e Alto da Quintilha, que estão dentro do Parque Nacional Saint Hillaire, tem fácil acesso.</p>
+                    </div>
+                    <div class="md:w-1/2 md:pl-4">
+                        <p class="text-gray-700">A Cachoeira da Quintilha tem uma queda d'água de cerca de 40 metros e é exuberante. O espaço cobra valor de entrada, mas simbólico.</p>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                    <img src="quintilha01.png" alt="Cachoeira Quintilha" class="w-full rounded-lg">
+                    <img src="quintilha-02.png" alt="Cachoeira Quintilha" class="w-full rounded-lg">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Paranaguá Turismo</h3>
+                    <p class="text-blue-200">Descubra as maravilhas históricas e naturais da cidade mais antiga do Paraná.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Links Úteis</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-blue-200 hover:text-white transition">Guia Turístico</a></li>
+                        <li><a href="#" class="text-blue-200 hover:text-white transition">Eventos</a></li>
+                        <li><a href="#" class="text-blue-200 hover:text-white transition">Como Chegar</a></li>
+                        <li><a href="#" class="text-blue-200 hover:text-white transition">Contato</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Redes Sociais</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-blue-200 hover:text-white text-2xl"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-blue-200 hover:text-white text-2xl"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-blue-200 hover:text-white text-2xl"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="text-blue-200 hover:text-white text-2xl"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-blue-800 mt-8 pt-6 text-center text-blue-300">
+                <p>&copy; 2023 Paranaguá Turismo. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Carousel functionality
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        let currentIndex = 0;
+        const totalSlides = slides.length;
+        const intervalTime = 3000; // milliseconds
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+                dots[i].classList.toggle('active', i === index);
+            });
+            currentIndex = index;
+        }
+
+        function nextSlide() {
+            let nextIndex = (currentIndex + 1) % totalSlides;
+            showSlide(nextIndex);
+        }
+
+        let slideInterval = setInterval(nextSlide, intervalTime);
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                clearInterval(slideInterval);
+                showSlide(parseInt(dot.dataset.index));
+                slideInterval = setInterval(nextSlide, intervalTime);
+            });
+        });
+
+        // Back to top button
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.style.display = 'flex';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
